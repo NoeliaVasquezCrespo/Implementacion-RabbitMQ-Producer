@@ -3,8 +3,6 @@ POST http://localhost:8080/v1/api/producer
 Content-Type: application/json
 
 {
-  "message": "PROBANDO CLUSTERING"
+  "message": "Enviando Mensaje de prueba a la cola"
 }
 
-
-###

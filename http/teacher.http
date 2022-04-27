@@ -1,0 +1,17 @@
+####
+GET http://localhost:8080/v1/api/teacher/1
+Content-Type: application/json
+
+####
+GET http://localhost:8080/v1/api/teacher
+Content-Type: application/json
+
+####
+POST http://localhost:8080/v1/api/teacher
+Content-Type: application/json
+
+{
+  "name": "Paola Carranza",
+  "email": "pcarranza@ucb.edu.bo",
+  "phone": "69854712" 
+}

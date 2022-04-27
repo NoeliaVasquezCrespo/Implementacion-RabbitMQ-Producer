@@ -1,0 +1,19 @@
+####
+GET http://localhost:8080/v1/api/subject/1
+Content-Type: application/json
+
+####
+GET http://localhost:8080/v1/api/subject
+Content-Type: application/json
+
+####
+POST http://localhost:8080/v1/api/subject
+Content-Type: application/json
+
+{
+  "name": "Sistemas Inteligentes",
+  "semester": 8,
+  "credits": 6,
+  "status": 1 
+}
+
