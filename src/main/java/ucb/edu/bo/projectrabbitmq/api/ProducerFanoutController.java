@@ -1,6 +1,6 @@
 package ucb.edu.bo.projectrabbitmq.api;
 
-import ucb.edu.bo.projectrabbitmq.config.RabbitMqConfig;
+import ucb.edu.bo.projectrabbitmq.config.RabbitMqFanoutConfig;
 import ucb.edu.bo.projectrabbitmq.entity.Student;
 import ucb.edu.bo.projectrabbitmq.entity.Subject;
 import ucb.edu.bo.projectrabbitmq.entity.Teacher;
@@ -14,29 +14,30 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-public class ProducerController {
+public class ProducerFanoutController {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-//---------------------------------------------- DIRECT ------------------------------------------------------
+//---------------------------------------------- FANOUT ------------------------------------------------------
 
-    @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/direct/student")
+    @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/fanout/student")
     private ResponseEntity<Student> sendMessage(@RequestBody Student student) {
-        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_STUDENT, student);        
+        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", student);        
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/direct/subject")
+    @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/fanout/subject")
     private ResponseEntity<Subject> sendMessage(@RequestBody Subject subject) {
-        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_SUBJECT, subject);        
+        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", subject);        
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/direct/teacher")
+    @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/fanout/teacher")
     private ResponseEntity<Teacher> sendMessage(@RequestBody Teacher teacher) {
-        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_TEACHER, teacher);        
+        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", teacher);        
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 }

@@ -9,65 +9,62 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitMqConfig {
+public class RabbitMqFanoutConfig {
 
-   
-    public static final String EXCHANGE_DIRECT = "exchange.direct";
+    public static final String EXCHANGE_FANOUT = "exchange.fanout";
     
+
     public static final String ROUTING_STUDENT = "routing.Student";
     public static final String ROUTING_SUBJECT = "routing.Subject";
     public static final String ROUTING_TEACHER = "routing.Teacher";
 
     @Bean
-    Queue queueStudent(){
+    Queue queueStudentFanout(){
         return new Queue("queue.Student", false);        
     }
 
     @Bean
-    Queue queueSubject(){
+    Queue queueSubjectFanout(){
         return new Queue("queue.Subject", false);        
     }
 
     @Bean
-    Queue queueTeacher(){
+    Queue queueTeacherFanout(){
         return new Queue("queue.Teacher", false);        
     }
 
     @Bean
-    DirectExchange exchange(){
-        return new DirectExchange(EXCHANGE_DIRECT);
+    FanoutExchange exchangeFanout(){
+        return new FanoutExchange(EXCHANGE_FANOUT);
     }
 
     @Bean
-    Binding bindingStudent(Queue queueStudent, DirectExchange exchange){
+    Binding bindingStudentFanout(Queue queueStudent, FanoutExchange exchange){
         return BindingBuilder.bind(queueStudent)
-                .to(exchange)
-                .with(ROUTING_STUDENT);
+                .to(exchange);
     }
 
     @Bean
-    Binding bindingSubject(Queue queueSubject, DirectExchange exchange){
+    Binding bindingSubjectFanout(Queue queueSubject, FanoutExchange exchange){
         return BindingBuilder.bind(queueSubject)
-                .to(exchange)
-                .with(ROUTING_SUBJECT);
+                .to(exchange);
     }
 
     @Bean
-    Binding bindingTeacher(Queue queueTeacher, DirectExchange exchange){
+    Binding bindingTeacherFanout(Queue queueTeacher, FanoutExchange exchange){
         return BindingBuilder.bind(queueTeacher)
-                .to(exchange)
-                .with(ROUTING_TEACHER);
+                .to(exchange);
     }
 
     @Bean
-    public MessageConverter messageConverter() {
+    public MessageConverter messageConverterFanout() {
         return new Jackson2JsonMessageConverter();
     }
 
     @Bean
-    public AmqpTemplate template(ConnectionFactory connectionFactory) {
+    public AmqpTemplate templateFanout(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(messageConverter());
+        rabbitTemplate.setMessageConverter(messageConverterFanout());
         return rabbitTemplate;
     }
 }
