@@ -1,0 +1,32 @@
+###
+POST http://localhost:8080/v1/api/producer/direct/student
+Content-Type: application/json
+
+{
+  "name": "Mario",
+  "lastName": "Perez",
+  "email": "mario@gmail.com"
+}
+
+
+####
+POST http://localhost:8080/v1/api/producer/direct/subject
+Content-Type: application/json
+
+{
+  "name": "Sistemas Inteligentes",
+  "semester": 8,
+  "credits": 6,
+  "status": 1 
+}
+
+
+####
+POST http://localhost:8080/v1/api/producer/direct/teacher
+Content-Type: application/json
+
+{
+  "name": "Juan",
+  "email": "jperez@ucb.edu.bo",
+  "phone": "69854712" 
+}

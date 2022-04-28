@@ -1,9 +1,0 @@
-###
-POST http://localhost:8080/v1/api/producer
-Content-Type: application/json
-
-{
-  "name": "Mario",
-  "lastName": "Perez",
-  "email": "mario@gmail.com"
-}
