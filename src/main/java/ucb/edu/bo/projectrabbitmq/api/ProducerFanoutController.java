@@ -23,19 +23,22 @@ public class ProducerFanoutController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/fanout/student")
     private ResponseEntity<Student> sendMessage(@RequestBody Student student) {
-        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", student);        
+        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", student);
+        System.out.println("Datos de estudiante enviado correctamente -> Tipo de Exchange: Fanout");        
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/fanout/subject")
     private ResponseEntity<Subject> sendMessage(@RequestBody Subject subject) {
-        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", subject);        
+        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", subject); 
+        System.out.println("Datos de asignatura enviado correctamente -> Tipo de Exchange: Fanout");       
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/fanout/teacher")
     private ResponseEntity<Teacher> sendMessage(@RequestBody Teacher teacher) {
-        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", teacher);        
+        rabbitTemplate.convertAndSend(RabbitMqFanoutConfig.EXCHANGE_FANOUT, "", teacher); 
+        System.out.println("Datos de docente enviado correctamente -> Tipo de Exchange: Fanout");       
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

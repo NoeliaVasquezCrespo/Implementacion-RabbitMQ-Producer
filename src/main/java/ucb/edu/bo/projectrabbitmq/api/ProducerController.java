@@ -23,19 +23,22 @@ public class ProducerController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/direct/student")
     private ResponseEntity<Student> sendMessage(@RequestBody Student student) {
-        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_STUDENT, student);        
+        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_STUDENT, student);   
+        System.out.println("Datos de estudiante enviado correctamente -> Tipo de Exchange: Direct");     
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/direct/subject")
     private ResponseEntity<Subject> sendMessage(@RequestBody Subject subject) {
-        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_SUBJECT, subject);        
+        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_SUBJECT, subject);   
+        System.out.println("Datos de asignatura enviado correctamente -> Tipo de Exchange: Direct");     
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/direct/teacher")
     private ResponseEntity<Teacher> sendMessage(@RequestBody Teacher teacher) {
-        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_TEACHER, teacher);        
+        rabbitTemplate.convertAndSend(RabbitMqConfig.EXCHANGE_DIRECT, RabbitMqConfig.ROUTING_TEACHER, teacher);    
+        System.out.println("Datos de docente enviado correctamente -> Tipo de Exchange: Direct");    
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

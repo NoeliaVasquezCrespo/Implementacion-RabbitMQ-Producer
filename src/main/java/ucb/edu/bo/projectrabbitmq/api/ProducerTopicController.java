@@ -23,19 +23,22 @@ public class ProducerTopicController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/topic/student")
     private ResponseEntity<Student> sendMessage(@RequestBody Student student) {
-        rabbitTemplate.convertAndSend(RabbitMqTopicConfig.EXCHANGE_TOPIC, RabbitMqTopicConfig.ROUTING_STUDENT, student);        
+        rabbitTemplate.convertAndSend(RabbitMqTopicConfig.EXCHANGE_TOPIC, RabbitMqTopicConfig.ROUTING_STUDENT, student);   
+        System.out.println("Datos de estudiante enviado correctamente -> Tipo de Exchange: Topic");     
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/topic/subject")
     private ResponseEntity<Subject> sendMessage(@RequestBody Subject subject) {
-        rabbitTemplate.convertAndSend(RabbitMqTopicConfig.EXCHANGE_TOPIC, RabbitMqTopicConfig.ROUTING_SUBJECT, subject);        
+        rabbitTemplate.convertAndSend(RabbitMqTopicConfig.EXCHANGE_TOPIC, RabbitMqTopicConfig.ROUTING_SUBJECT, subject); 
+        System.out.println("Datos de asignatura enviado correctamente -> Tipo de Exchange: Topic");       
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/v1/api/producer/topic/teacher")
     private ResponseEntity<Teacher> sendMessage(@RequestBody Teacher teacher) {
-        rabbitTemplate.convertAndSend(RabbitMqTopicConfig.EXCHANGE_TOPIC, RabbitMqTopicConfig.ROUTING_TEACHER, teacher);        
+        rabbitTemplate.convertAndSend(RabbitMqTopicConfig.EXCHANGE_TOPIC, RabbitMqTopicConfig.ROUTING_TEACHER, teacher);
+        System.out.println("Datos de docente enviado correctamente -> Tipo de Exchange: Topic");        
         return new ResponseEntity<>(HttpStatus.OK);
     }
  
